@@ -315,6 +315,7 @@ public class MainActivity extends AppCompatActivity {
                 progressBar.setProgress(0);
                 tr1.removeAllViews();
                 tr2.removeAllViews();
+                cb_Delivery.setChecked(false);
             }
         });
     }

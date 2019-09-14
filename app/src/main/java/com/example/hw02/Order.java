@@ -32,4 +32,16 @@ public class Order implements Serializable {
         this._toppingsTotal = (this._toppingsCount * this._pricePerTopping);
         return this._toppingsTotal;
     }
+
+    public boolean IsDeliveryChecked(){
+        return this._isDeliverySelected;
+    }
+
+    public Double GetDeliveryCost(){
+        return this._deliveryPrice;
+    }
+
+    public Integer GetToppingsCount(){
+        return this._toppingsCount;
+    }
 }
