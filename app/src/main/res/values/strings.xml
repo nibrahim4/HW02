@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Pizza Store</string>
+    <string name="btn_checkout">Checkout</string>
+    <string name="btn_addTopping">Add Topping</string>
+    <string name="btn_clearPizza">Clear Pizza</string>
+    <string name="cb_delivery">Delivery</string>
+    <string name="tv_orderTitle">Your Order</string>
+    <string name="tv_basePriceLbl">Base Price:</string>
+    <string name="tv_toppingsLbl">Toppings:</string>
+    <string name="tv_selectedToppings" />
+    <string name="tv_deliveryLbl">Delivery Cost:</string>
+    <string name="tv_totalLbl">TOTAL</string>
+    <string name="tv_deliveryCost">$4.00</string>
+    <string name="tv_toppingsTotal" />
+    <string name="tv_basePrice">$6.50</string>
+    <string name="btn_finish">Finish</string>
+</resources>
