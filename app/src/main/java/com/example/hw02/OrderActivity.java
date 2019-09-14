@@ -18,6 +18,7 @@ public class OrderActivity extends AppCompatActivity {
     public TextView tv_toppingsTotal;
     private TextView tv_deliveryPrice;
     private Button btn_finish;
+    private ArrayList<String> toppingsFromMain = new ArrayList<String>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,6 +31,7 @@ public class OrderActivity extends AppCompatActivity {
         extrasFromMain = getIntent().getExtras().getBundle(TAG_ORDER);
 
         order = (Order) extrasFromMain.getSerializable("pizzaOrder");
+        toppingsFromMain =  extrasFromMain.getStringArrayList("toppings");
 
         DecimalFormat df = new DecimalFormat("##.00");
 
@@ -45,8 +47,8 @@ public class OrderActivity extends AppCompatActivity {
             tv_toppingsTotal.setText("$"+ df.format(order.GetToppingsTotal()));
         }
 
-        ArrayList<String> toppingNames = extrasFromMain.getStringArrayList(TAG_TOPPING);
-        Log.d("TOPPINGS", "onCreate: " + toppingNames );
+        //ArrayList<String> toppingNames = extrasFromMain.getStringArrayList(TAG_TOPPING);
+        Log.d("TOPPINGS", "onCreate: " + toppingsFromMain );
 
         btn_finish.setOnClickListener(new View.OnClickListener(){
 

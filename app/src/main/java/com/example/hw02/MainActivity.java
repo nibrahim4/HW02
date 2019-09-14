@@ -299,11 +299,14 @@ public class MainActivity extends AppCompatActivity {
 
                 Bundle sentData = new Bundle();
                 sentData.putSerializable("pizzaOrder",pizzaOrder);
-
+                sentData.putStringArrayList("toppings", selectedToppings);
                 intent.putExtra(TAG_ORDER, sentData);
-                intent.putExtra(TAG_TOPPING, selectedToppings);
+              //  intent.putExtra(TAG_TOPPING, selectedToppings);
 
                 startActivity(intent);
+
+
+
             }
         });
 
