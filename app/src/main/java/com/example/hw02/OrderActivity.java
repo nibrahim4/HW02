@@ -2,6 +2,7 @@ package com.example.hw02;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -18,7 +19,9 @@ public class OrderActivity extends AppCompatActivity {
     public TextView tv_toppingsTotal;
     private TextView tv_deliveryPrice;
     private Button btn_finish;
-    private ArrayList<String> toppingsFromMain = new ArrayList<String>();
+    private ArrayList<String> toppingsFromMain = new ArrayList<>();
+    private TextView tv_selectedToppings;
+    private TextView tv_totalAmount;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,11 +30,17 @@ public class OrderActivity extends AppCompatActivity {
         tv_toppingsTotal = findViewById(R.id.tv_toppingsTotal);
         btn_finish = findViewById(R.id.btn_finish);
         tv_deliveryPrice = findViewById(R.id.tv_deliveryCost);
+        tv_selectedToppings = findViewById(R.id.tv_selectedToppings);
+        tv_totalAmount = findViewById(R.id.tv_totalAmount);
 
         extrasFromMain = getIntent().getExtras().getBundle(TAG_ORDER);
 
         order = (Order) extrasFromMain.getSerializable("pizzaOrder");
         toppingsFromMain =  extrasFromMain.getStringArrayList("toppings");
+
+        //for (int i = 0; i<toppingsFromMain.size(); i++){
+            tv_selectedToppings.setText(toppingsFromMain.toString());
+        //}
 
         DecimalFormat df = new DecimalFormat("##.00");
 
@@ -47,13 +56,14 @@ public class OrderActivity extends AppCompatActivity {
             tv_toppingsTotal.setText("$"+ df.format(order.GetToppingsTotal()));
         }
 
-        //ArrayList<String> toppingNames = extrasFromMain.getStringArrayList(TAG_TOPPING);
-        Log.d("TOPPINGS", "onCreate: " + toppingsFromMain );
-
         btn_finish.setOnClickListener(new View.OnClickListener(){
 
             @Override
             public void onClick(View view) {
+                Intent intent = new Intent(OrderActivity.this, MainActivity.class);
+
+//                SETTING RESULTS...
+                setResult(OrderActivity.RESULT_OK, intent);
                 finish();
             }
         });

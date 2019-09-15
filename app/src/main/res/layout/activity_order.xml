@@ -127,4 +127,19 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_totalAmount"
+        android:layout_width="169dp"
+        android:layout_height="43dp"
+        android:layout_marginTop="64dp"
+        android:text="@string/tv_totalAmount"
+        android:textAlignment="textEnd"
+        android:textSize="36sp"
+        app:layout_constraintBottom_toTopOf="@+id/btn_finish"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.741"
+        app:layout_constraintStart_toEndOf="@+id/tv_totalLbl"
+        app:layout_constraintTop_toBottomOf="@+id/tv_deliveryCost"
+        app:layout_constraintVertical_bias="0.041" />
 </androidx.constraintlayout.widget.ConstraintLayout>

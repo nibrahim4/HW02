@@ -1,5 +1,6 @@
 package com.example.hw02;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
@@ -36,11 +37,14 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<String> selectedToppings = new ArrayList<String>();
     public static final String TAG_ORDER = "order";
     public static final String TAG_TOPPING = "topping";
-
+    private static final int REQ_CODE = 5;
+    private TableRow tr1;
+    private TableRow tr2;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        setTitle("Pizza Store");
 
         progressBar = findViewById(R.id.progressBar);
         cb_Delivery = findViewById(R.id.cb_delivery);
@@ -48,12 +52,12 @@ public class MainActivity extends AppCompatActivity {
         /* Find Tablelayout defined in main.xml */
         TableLayout tl = findViewById(R.id.tbl_selectedToppings);
         /* Create a new row to be added. */
-        final TableRow tr1 = new TableRow(this);
+        tr1 = new TableRow(this);
         tr1.setLayoutParams(new TableLayout.LayoutParams(
                 TableLayout.LayoutParams.FILL_PARENT,
                 TableLayout.LayoutParams.WRAP_CONTENT));
 
-        final TableRow tr2 = new TableRow(this);
+        tr2 = new TableRow(this);
         tr2.setLayoutParams(new TableLayout.LayoutParams(
                 TableLayout.LayoutParams.FILL_PARENT,
                 TableLayout.LayoutParams.WRAP_CONTENT));
@@ -301,11 +305,8 @@ public class MainActivity extends AppCompatActivity {
                 sentData.putSerializable("pizzaOrder",pizzaOrder);
                 sentData.putStringArrayList("toppings", selectedToppings);
                 intent.putExtra(TAG_ORDER, sentData);
-              //  intent.putExtra(TAG_TOPPING, selectedToppings);
 
                 startActivity(intent);
-
-
 
             }
         });
@@ -322,4 +323,25 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        Log.d("TOPPINGS" ,"onActivity Result");
+    }
+/*@Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        Log.d("TOPPINGS" ,"onActivity Result");
+        if (requestCode==REQ_CODE){
+            if(resultCode==RESULT_OK){
+                selectedToppings.clear();
+                progressBar.setProgress(0);
+                tr1.removeAllViews();
+                tr2.removeAllViews();
+                cb_Delivery.setChecked(false);
+            }
+        }*/
+    //}
 }
