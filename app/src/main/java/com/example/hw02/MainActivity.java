@@ -241,6 +241,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 selectedToppings.clear();
                 progressBar.setProgress(0);
+                gl.removeAllViews();
             }
         });
     }
@@ -253,6 +254,7 @@ public class MainActivity extends AppCompatActivity {
                 selectedToppings.clear();
                 progressBar.setProgress(0);
                 cb_Delivery.setChecked(false);
+                gl.removeAllViews();
             }
         }
     }
