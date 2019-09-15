@@ -22,7 +22,7 @@ public class Order implements Serializable {
         this._orderTotal = (this._toppingsCount * this._pricePerTopping) + this._basePizzePrice;
 
         if(this._isDeliverySelected){
-            this._orderTotal =+ this._deliveryPrice;
+            this._orderTotal += this._deliveryPrice;
         }
 
         return this._orderTotal;
