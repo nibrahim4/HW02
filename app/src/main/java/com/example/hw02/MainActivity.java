@@ -78,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(DialogInterface dialogInterface, int index) {
 
                 if(selectedToppings.size() >= 10){
-                    Toast.makeText(MainActivity.this, "Maximum Topping capacity reached!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "Maximum Capacity!", Toast.LENGTH_LONG).show();
                 }else {
                     final String selectedTopping = toppings[index].toString();
 
@@ -98,13 +98,14 @@ public class MainActivity extends AppCompatActivity {
                             im_bacon.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view_bacon) {
-                                Log.d("TOPPINGS", "onClick: Image clicked");
                                 if(tr1.getChildCount() < 0){
                                     tr2.removeView(view_bacon);
                                     selectedToppings.remove(selectedTopping);
+                                    progressBar.setProgress(selectedToppings.size());
                                 }else{
                                     tr1.removeView(view_bacon);
                                     selectedToppings.remove(selectedTopping);
+                                    progressBar.setProgress(selectedToppings.size());
                                 }
                             }
                         });
@@ -126,9 +127,11 @@ public class MainActivity extends AppCompatActivity {
                                     if(tr1.getChildCount() < 0){
                                         tr2.removeView(view_cheese);
                                         selectedToppings.remove(selectedTopping);
+                                        progressBar.setProgress(selectedToppings.size());
                                     }else{
                                         tr1.removeView(view_cheese);
                                         selectedToppings.remove(selectedTopping);
+                                        progressBar.setProgress(selectedToppings.size());
                                     }
                                 }
                             });
@@ -150,9 +153,11 @@ public class MainActivity extends AppCompatActivity {
                                     if(tr1.getChildCount() < 0){
                                         tr2.removeView(view_garlic);
                                         selectedToppings.remove(selectedTopping);
+                                        progressBar.setProgress(selectedToppings.size());
                                     }else{
                                         tr1.removeView(view_garlic);
                                         selectedToppings.remove(selectedTopping);
+                                        progressBar.setProgress(selectedToppings.size());
                                     }
                                 }
                             });
@@ -173,9 +178,11 @@ public class MainActivity extends AppCompatActivity {
                                     if(tr1.getChildCount() < 0){
                                         tr2.removeView(view_greenPepper);
                                         selectedToppings.remove(selectedTopping);
+                                        progressBar.setProgress(selectedToppings.size());
                                     }else{
                                         tr1.removeView(view_greenPepper);
                                         selectedToppings.remove(selectedTopping);
+                                        progressBar.setProgress(selectedToppings.size());
                                     }
                                 }
                             });
@@ -196,9 +203,11 @@ public class MainActivity extends AppCompatActivity {
                                     if(tr1.getChildCount() < 0){
                                         tr2.removeView(view_mushroom);
                                         selectedToppings.remove(selectedTopping);
+                                        progressBar.setProgress(selectedToppings.size());
                                     }else{
                                         tr1.removeView(view_mushroom);
                                         selectedToppings.remove(selectedTopping);
+                                        progressBar.setProgress(selectedToppings.size());
                                     }
                                 }
                             });
@@ -219,9 +228,11 @@ public class MainActivity extends AppCompatActivity {
                                     if(tr1.getChildCount() < 0){
                                         tr2.removeView(view_olive);
                                         selectedToppings.remove(selectedTopping);
+                                        progressBar.setProgress(selectedToppings.size());
                                     }else{
                                         tr1.removeView(view_olive);
                                         selectedToppings.remove(selectedTopping);
+                                        progressBar.setProgress(selectedToppings.size());
                                     }
                                 }
                             });
@@ -242,9 +253,11 @@ public class MainActivity extends AppCompatActivity {
                                     if(tr1.getChildCount() < 0){
                                         tr2.removeView(view_onion);
                                         selectedToppings.remove(selectedTopping);
+                                        progressBar.setProgress(selectedToppings.size());
                                     }else{
                                         tr1.removeView(view_onion);
                                         selectedToppings.remove(selectedTopping);
+                                        progressBar.setProgress(selectedToppings.size());
                                     }
                                 }
                             });
@@ -265,9 +278,11 @@ public class MainActivity extends AppCompatActivity {
                                     if(tr1.getChildCount() < 0){
                                         tr2.removeView(view_redPepper);
                                         selectedToppings.remove(selectedTopping);
+                                        progressBar.setProgress(selectedToppings.size());
                                     }else{
                                         tr1.removeView(view_redPepper);
                                         selectedToppings.remove(selectedTopping);
+                                        progressBar.setProgress(selectedToppings.size());
                                     }
                                 }
                             });
@@ -287,7 +302,12 @@ public class MainActivity extends AppCompatActivity {
         btn_AddTopping.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                alert.show();
+                if (selectedToppings.size() >= 10) {
+                    Toast.makeText(MainActivity.this, "Maximum Topping capacity reached!", Toast.LENGTH_LONG).show();
+                }else{
+                    alert.show();
+                }
+
             }
 
         });
@@ -319,7 +339,6 @@ public class MainActivity extends AppCompatActivity {
                 progressBar.setProgress(0);
                 tr1.removeAllViews();
                 tr2.removeAllViews();
-                cb_Delivery.setChecked(false);
             }
         });
     }

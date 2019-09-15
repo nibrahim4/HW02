@@ -39,7 +39,12 @@ public class OrderActivity extends AppCompatActivity {
         order = (Order) extrasFromMain.getSerializable("pizzaOrder");
         toppingsFromMain =  extrasFromMain.getStringArrayList("toppings");
 
-        tv_selectedToppings.setText(toppingsFromMain.toString());
+        if(toppingsFromMain.size() <= 0){
+            tv_selectedToppings.setText("");
+        }else{
+            tv_selectedToppings.setText(toppingsFromMain.toString());
+        }
+
 
         DecimalFormat df = new DecimalFormat("##.00");
         tv_totalAmount.setText("$" + df.format(order.GetTotalOrder()).toString());

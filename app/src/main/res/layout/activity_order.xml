@@ -46,8 +46,8 @@
 
     <TextView
         android:id="@+id/tv_selectedToppings"
-        android:layout_width="353dp"
-        android:layout_height="46dp"
+        android:layout_width="359dp"
+        android:layout_height="100dp"
         android:layout_marginStart="36dp"
         android:layout_marginTop="16dp"
         android:text="@string/tv_selectedToppings"
@@ -92,8 +92,8 @@
 
     <TextView
         android:id="@+id/tv_toppingsTotal"
-        android:layout_width="130dp"
-        android:layout_height="46dp"
+        android:layout_width="128dp"
+        android:layout_height="41dp"
         android:layout_marginTop="8dp"
         android:text="@string/tv_toppingsTotal"
         android:textAlignment="textEnd"
@@ -109,12 +109,12 @@
         android:layout_width="131dp"
         android:layout_height="40dp"
         android:layout_marginStart="142dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="40dp"
         android:text="@string/tv_basePrice"
         android:textAlignment="textEnd"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.034"
         app:layout_constraintStart_toEndOf="@+id/tv_basePriceLbl"
         app:layout_constraintTop_toBottomOf="@+id/tv_orderTitle" />
 
