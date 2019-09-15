@@ -306,7 +306,7 @@ public class MainActivity extends AppCompatActivity {
                 sentData.putStringArrayList("toppings", selectedToppings);
                 intent.putExtra(TAG_ORDER, sentData);
 
-                startActivity(intent);
+                startActivityForResult(intent, REQ_CODE);
 
             }
         });
@@ -324,16 +324,9 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    @Override
+@Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        Log.d("TOPPINGS" ,"onActivity Result");
-    }
-/*@Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        Log.d("TOPPINGS" ,"onActivity Result");
         if (requestCode==REQ_CODE){
             if(resultCode==RESULT_OK){
                 selectedToppings.clear();
@@ -342,6 +335,6 @@ public class MainActivity extends AppCompatActivity {
                 tr2.removeAllViews();
                 cb_Delivery.setChecked(false);
             }
-        }*/
-    //}
+        }
+    }
 }

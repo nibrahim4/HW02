@@ -22,6 +22,7 @@ public class OrderActivity extends AppCompatActivity {
     private ArrayList<String> toppingsFromMain = new ArrayList<>();
     private TextView tv_selectedToppings;
     private TextView tv_totalAmount;
+    private static final int REQ_CODE = 5;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,11 +39,12 @@ public class OrderActivity extends AppCompatActivity {
         order = (Order) extrasFromMain.getSerializable("pizzaOrder");
         toppingsFromMain =  extrasFromMain.getStringArrayList("toppings");
 
-        //for (int i = 0; i<toppingsFromMain.size(); i++){
-            tv_selectedToppings.setText(toppingsFromMain.toString());
-        //}
+        tv_selectedToppings.setText(toppingsFromMain.toString());
 
         DecimalFormat df = new DecimalFormat("##.00");
+        tv_totalAmount.setText("$" + df.format(order.GetTotalOrder()).toString());
+
+
 
         if (order.IsDeliveryChecked()){
             tv_deliveryPrice.setText("$" + df.format(order.GetDeliveryCost()));
@@ -60,10 +62,10 @@ public class OrderActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(OrderActivity.this, MainActivity.class);
+               Intent intentToMain = new Intent();
 
-//                SETTING RESULTS...
-                setResult(OrderActivity.RESULT_OK, intent);
+                //SETTING RESULTS...
+                setResult(OrderActivity.RESULT_OK, intentToMain);
                 finish();
             }
         });
