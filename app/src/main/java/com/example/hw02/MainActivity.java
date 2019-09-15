@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
         // Creating and Building the Dialog
         AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
         builder.setTitle("Choose A Topping");
-        builder.setSingleChoiceItems(toppings, -1, new DialogInterface.OnClickListener() {
+        builder.setItems(toppings, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int index) {
 
