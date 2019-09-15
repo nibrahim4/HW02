@@ -221,16 +221,21 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view){
 
-                Intent intent = new Intent(MainActivity.this, OrderActivity.class);
+                if(selectedToppings.size()> 0){
+                    Intent intent = new Intent(MainActivity.this, OrderActivity.class);
 
-                Order pizzaOrder = new Order(selectedToppings.size(), cb_Delivery.isChecked());
+                    Order pizzaOrder = new Order(selectedToppings.size(), cb_Delivery.isChecked());
 
-                Bundle sentData = new Bundle();
-                sentData.putSerializable("pizzaOrder",pizzaOrder);
-                sentData.putStringArrayList("toppings", selectedToppings);
-                intent.putExtra(TAG_ORDER, sentData);
+                    Bundle sentData = new Bundle();
+                    sentData.putSerializable("pizzaOrder",pizzaOrder);
+                    sentData.putStringArrayList("toppings", selectedToppings);
+                    intent.putExtra(TAG_ORDER, sentData);
 
-                startActivityForResult(intent, REQ_CODE);
+                    startActivityForResult(intent, REQ_CODE);
+                }else{
+                    Toast.makeText(MainActivity.this, "Please select atleast one topping.", Toast.LENGTH_LONG).show();
+                }
+
 
             }
         });
