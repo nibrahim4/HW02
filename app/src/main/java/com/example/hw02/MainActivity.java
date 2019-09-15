@@ -1,30 +1,23 @@
 package com.example.hw02;
 
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.GridView;
+import androidx.gridlayout.widget.GridLayout;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ProgressBar;
-import android.widget.TableLayout;
 import android.widget.TableRow;
-import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -38,8 +31,8 @@ public class MainActivity extends AppCompatActivity {
     public static final String TAG_ORDER = "order";
     public static final String TAG_TOPPING = "topping";
     private static final int REQ_CODE = 5;
-    private TableRow tr1;
-    private TableRow tr2;
+    private GridLayout gl;
+    private int id = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,28 +40,11 @@ public class MainActivity extends AppCompatActivity {
         setTitle("Pizza Store");
 
         progressBar = findViewById(R.id.progressBar);
+        progressBar.setMax(10);
+        progressBar.setProgress(0);
         cb_Delivery = findViewById(R.id.cb_delivery);
-
-        /* Find Tablelayout defined in main.xml */
-        TableLayout tl = findViewById(R.id.tbl_selectedToppings);
-        /* Create a new row to be added. */
-        tr1 = new TableRow(this);
-        tr1.setLayoutParams(new TableLayout.LayoutParams(
-                TableLayout.LayoutParams.FILL_PARENT,
-                TableLayout.LayoutParams.WRAP_CONTENT));
-
-        tr2 = new TableRow(this);
-        tr2.setLayoutParams(new TableLayout.LayoutParams(
-                TableLayout.LayoutParams.FILL_PARENT,
-                TableLayout.LayoutParams.WRAP_CONTENT));
-
-        /* Add row to TableLayout. */
-        tl.addView(tr1,new TableLayout.LayoutParams(
-                TableLayout.LayoutParams.FILL_PARENT,
-                TableLayout.LayoutParams.WRAP_CONTENT));
-        tl.addView(tr2,new TableLayout.LayoutParams(
-                TableLayout.LayoutParams.FILL_PARENT,
-                TableLayout.LayoutParams.WRAP_CONTENT));
+        gl = findViewById(R.id.gl_selectedToppings);
+        gl.setForegroundGravity(Gravity.CENTER);
 
         // Creating and Building the Dialog
         AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
@@ -82,31 +58,23 @@ public class MainActivity extends AppCompatActivity {
                 }else {
                     final String selectedTopping = toppings[index].toString();
 
+
                     switch (toppings[index].toString()) {
                         case "Bacon":
                             // Add image to row.
                             ImageView im_bacon = new ImageView(MainActivity.this);
                             im_bacon.setBackgroundResource(R.drawable.bacon);
-                            if(tr1.getChildCount() <5){
-                                tr1.addView(im_bacon);
-                                selectedToppings.add(selectedTopping);
-                            }else if(tr2.getChildCount() <5){
-                                tr2.addView(im_bacon);
-                                selectedToppings.add(selectedTopping);
-                            }
+                            im_bacon.setForegroundGravity(Gravity.CENTER_VERTICAL);
+                            gl.addView(im_bacon);
+                            selectedToppings.add(selectedTopping);
 
                             im_bacon.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view_bacon) {
-                                if(tr1.getChildCount() < 0){
-                                    tr2.removeView(view_bacon);
-                                    selectedToppings.remove(selectedTopping);
-                                    progressBar.setProgress(selectedToppings.size());
-                                }else{
-                                    tr1.removeView(view_bacon);
-                                    selectedToppings.remove(selectedTopping);
-                                    progressBar.setProgress(selectedToppings.size());
-                                }
+                                gl.removeView(view_bacon);
+                                selectedToppings.remove(selectedTopping);
+                                progressBar.setProgress(selectedToppings.size());
+
                             }
                         });
 
@@ -114,25 +82,15 @@ public class MainActivity extends AppCompatActivity {
                         case "Cheese":
                             ImageView im_cheese = new ImageView(MainActivity.this);
                             im_cheese.setBackgroundResource(R.drawable.cheese);
-                            if(tr1.getChildCount() <5){
-                                tr1.addView(im_cheese);
-                                selectedToppings.add(selectedTopping);
-                            }else if(tr2.getChildCount() <5){
-                                tr2.addView(im_cheese);
-                                selectedToppings.add(selectedTopping);
-                            }
+                            im_cheese.setForegroundGravity(Gravity.CENTER_VERTICAL);
+                            gl.addView(im_cheese);
+                            selectedToppings.add(selectedTopping);
                             im_cheese.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View view_cheese) {
-                                    if(tr1.getChildCount() < 0){
-                                        tr2.removeView(view_cheese);
-                                        selectedToppings.remove(selectedTopping);
-                                        progressBar.setProgress(selectedToppings.size());
-                                    }else{
-                                        tr1.removeView(view_cheese);
-                                        selectedToppings.remove(selectedTopping);
-                                        progressBar.setProgress(selectedToppings.size());
-                                    }
+                                    gl.removeView(view_cheese);
+                                    selectedToppings.remove(selectedTopping);
+                                    progressBar.setProgress(selectedToppings.size());
                                 }
                             });
 
@@ -140,157 +98,103 @@ public class MainActivity extends AppCompatActivity {
                         case "Garlic":
                             ImageView im_garlic = new ImageView(MainActivity.this);
                             im_garlic.setBackgroundResource(R.drawable.garlic);
-                            if(tr1.getChildCount() <5){
-                                tr1.addView(im_garlic);
-                                selectedToppings.add(selectedTopping);
-                            }else if(tr2.getChildCount() <5){
-                                tr2.addView(im_garlic);
-                                selectedToppings.add(selectedTopping);
-                            }
+                            im_garlic.setForegroundGravity(Gravity.CENTER_VERTICAL);
+                            gl.addView(im_garlic);
+                            selectedToppings.add(selectedTopping);
+
                             im_garlic.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View view_garlic) {
-                                    if(tr1.getChildCount() < 0){
-                                        tr2.removeView(view_garlic);
-                                        selectedToppings.remove(selectedTopping);
-                                        progressBar.setProgress(selectedToppings.size());
-                                    }else{
-                                        tr1.removeView(view_garlic);
-                                        selectedToppings.remove(selectedTopping);
-                                        progressBar.setProgress(selectedToppings.size());
-                                    }
+                                    gl.removeView(view_garlic);
+                                    selectedToppings.remove(selectedTopping);
+                                    progressBar.setProgress(selectedToppings.size());
                                 }
                             });
                             break;
                         case "Green Pepper":
                             ImageView im_greenPepper = new ImageView(MainActivity.this);
                             im_greenPepper.setBackgroundResource(R.drawable.green_pepper);
-                            if(tr1.getChildCount() <5){
-                                tr1.addView(im_greenPepper);
-                                selectedToppings.add(selectedTopping);
-                            }else if(tr2.getChildCount() <5){
-                                tr2.addView(im_greenPepper);
-                                selectedToppings.add(selectedTopping);
-                            }
+                            im_greenPepper.setForegroundGravity(Gravity.CENTER_VERTICAL);
+                            gl.addView(im_greenPepper);
+                            selectedToppings.add(selectedTopping);
+
                             im_greenPepper.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View view_greenPepper) {
-                                    if(tr1.getChildCount() < 0){
-                                        tr2.removeView(view_greenPepper);
-                                        selectedToppings.remove(selectedTopping);
-                                        progressBar.setProgress(selectedToppings.size());
-                                    }else{
-                                        tr1.removeView(view_greenPepper);
-                                        selectedToppings.remove(selectedTopping);
-                                        progressBar.setProgress(selectedToppings.size());
-                                    }
+                                    gl.removeView(view_greenPepper);
+                                    selectedToppings.remove(selectedTopping);
+                                    progressBar.setProgress(selectedToppings.size());
                                 }
                             });
                             break;
                         case "Mushroom":
                             ImageView im_mushroom = new ImageView(MainActivity.this);
                             im_mushroom.setBackgroundResource(R.drawable.mushroom);
-                            if(tr1.getChildCount() <5){
-                                tr1.addView(im_mushroom);
-                                selectedToppings.add(selectedTopping);
-                            }else if(tr2.getChildCount() <5){
-                                tr2.addView(im_mushroom);
-                                selectedToppings.add(selectedTopping);
-                            }
+                            im_mushroom.setForegroundGravity(Gravity.CENTER_VERTICAL);
+                            gl.addView(im_mushroom);
+                            selectedToppings.add(selectedTopping);
+
                             im_mushroom.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View view_mushroom) {
-                                    if(tr1.getChildCount() < 0){
-                                        tr2.removeView(view_mushroom);
-                                        selectedToppings.remove(selectedTopping);
-                                        progressBar.setProgress(selectedToppings.size());
-                                    }else{
-                                        tr1.removeView(view_mushroom);
-                                        selectedToppings.remove(selectedTopping);
-                                        progressBar.setProgress(selectedToppings.size());
-                                    }
+                                    gl.removeView(view_mushroom);
+                                    selectedToppings.remove(selectedTopping);
+                                    progressBar.setProgress(selectedToppings.size());
                                 }
                             });
                             break;
                         case "Olives":
                             ImageView im_olive = new ImageView(MainActivity.this);
                             im_olive.setBackgroundResource(R.drawable.olive);
-                            if(tr1.getChildCount() <5){
-                                tr1.addView(im_olive);
-                                selectedToppings.add(selectedTopping);
-                            }else if(tr2.getChildCount() <5){
-                                tr2.addView(im_olive);
-                                selectedToppings.add(selectedTopping);
-                            }
+                            im_olive.setForegroundGravity(Gravity.CENTER_VERTICAL);
+                            gl.addView(im_olive);
+                            selectedToppings.add(selectedTopping);
+
                             im_olive.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View view_olive) {
-                                    if(tr1.getChildCount() < 0){
-                                        tr2.removeView(view_olive);
-                                        selectedToppings.remove(selectedTopping);
-                                        progressBar.setProgress(selectedToppings.size());
-                                    }else{
-                                        tr1.removeView(view_olive);
-                                        selectedToppings.remove(selectedTopping);
-                                        progressBar.setProgress(selectedToppings.size());
-                                    }
+                                    gl.removeView(view_olive);
+                                    selectedToppings.remove(selectedTopping);
+                                    progressBar.setProgress(selectedToppings.size());
                                 }
                             });
                             break;
                         case "Onions":
                             ImageView im_onion = new ImageView(MainActivity.this);
                             im_onion.setBackgroundResource(R.drawable.onion);
-                            if(tr1.getChildCount() <5){
-                                tr1.addView(im_onion);
-                                selectedToppings.add(selectedTopping);
-                            }else if(tr2.getChildCount() <5){
-                                tr2.addView(im_onion);
-                                selectedToppings.add(selectedTopping);
-                            }
+                            im_onion.setForegroundGravity(Gravity.CENTER_VERTICAL);
+                            gl.addView(im_onion);
+                            selectedToppings.add(selectedTopping);
+
                             im_onion.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View view_onion) {
-                                    if(tr1.getChildCount() < 0){
-                                        tr2.removeView(view_onion);
-                                        selectedToppings.remove(selectedTopping);
-                                        progressBar.setProgress(selectedToppings.size());
-                                    }else{
-                                        tr1.removeView(view_onion);
-                                        selectedToppings.remove(selectedTopping);
-                                        progressBar.setProgress(selectedToppings.size());
-                                    }
+                                    gl.removeView(view_onion);
+                                    selectedToppings.remove(selectedTopping);
+                                    progressBar.setProgress(selectedToppings.size());
                                 }
                             });
                             break;
                         case "Red Pepper":
                             ImageView im_redPepper = new ImageView(MainActivity.this);
                             im_redPepper.setBackgroundResource(R.drawable.red_pepper);
-                            if(tr1.getChildCount() <5){
-                                tr1.addView(im_redPepper);
-                                selectedToppings.add(selectedTopping);
-                            }else if(tr2.getChildCount() <5){
-                                tr2.addView(im_redPepper);
-                                selectedToppings.add(selectedTopping);
-                            }
+                            im_redPepper.setForegroundGravity(Gravity.CENTER_VERTICAL);
+                            gl.addView(im_redPepper);
+                            selectedToppings.add(selectedTopping);
                             im_redPepper.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View view_redPepper) {
-                                    if(tr1.getChildCount() < 0){
-                                        tr2.removeView(view_redPepper);
-                                        selectedToppings.remove(selectedTopping);
-                                        progressBar.setProgress(selectedToppings.size());
-                                    }else{
-                                        tr1.removeView(view_redPepper);
-                                        selectedToppings.remove(selectedTopping);
-                                        progressBar.setProgress(selectedToppings.size());
-                                    }
+                                    gl.removeView(view_redPepper);
+                                    selectedToppings.remove(selectedTopping);
+                                    progressBar.setProgress(selectedToppings.size());
                                 }
                             });
                             break;
                         default:
 
                     }
-                    progressBar.setMax(10);
+                    id = id + 1;
+
                     progressBar.setProgress(selectedToppings.size());
                 }
             }
@@ -337,8 +241,6 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 selectedToppings.clear();
                 progressBar.setProgress(0);
-                tr1.removeAllViews();
-                tr2.removeAllViews();
             }
         });
     }
@@ -350,8 +252,6 @@ public class MainActivity extends AppCompatActivity {
             if(resultCode==RESULT_OK){
                 selectedToppings.clear();
                 progressBar.setProgress(0);
-                tr1.removeAllViews();
-                tr2.removeAllViews();
                 cb_Delivery.setChecked(false);
             }
         }

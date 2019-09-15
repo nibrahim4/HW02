@@ -6,13 +6,18 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <TableLayout
-        android:id="@+id/tbl_selectedToppings"
-        android:layout_width="399dp"
-        android:layout_height="172dp"
+    <androidx.gridlayout.widget.GridLayout
+        android:id="@+id/gl_selectedToppings"
+        android:layout_width="wrap_content"
+        android:layout_height="213dp"
+        android:foregroundGravity="center_vertical|center"
+        app:columnCount="@integer/gl_columnCount"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:rowCount="@integer/gl_rowCount">
+
+    </androidx.gridlayout.widget.GridLayout>
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -21,7 +26,7 @@
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tbl_selectedToppings">
+        app:layout_constraintTop_toBottomOf="@+id/gl_selectedToppings">
 
         <ImageView
             android:id="@+id/iv_pizza"
